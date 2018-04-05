@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:jsx-control-statements/recommended"
+  ],
+  "parser": "babel-eslint",
+  "globals": {},
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "react/jsx-no-undef": [2, { "allowGlobals": true }],
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-underscore-dangle": [
+      "error",
+      { "allow": ["_id", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }
+    ],
+    "no-console": ["error", { "allow": ["warn", "info", "error"] }]
+  },
+  "plugins": [
+    "jsx-control-statements"
+  ]
+}

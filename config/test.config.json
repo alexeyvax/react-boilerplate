@@ -1,0 +1,24 @@
+{
+  "rootDir": "../",
+  "testRegex": "./src/.*.test.js",
+  "transformIgnorePatterns": [
+    "node_modules"
+  ],
+  "testPathIgnorePatterns": [
+    ".yarn-cache/", "/node_modules/"
+  ],
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest"
+  },
+  "moduleFileExtensions": ["js","jsx"],
+  "moduleDirectories": ["../node_modules", "../src"],
+  "moduleNameMapper": {
+    "^.+\\.(css|scss|svg)$": "identity-obj-proxy"
+  },
+  "collectCoverage": false,
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}",
+    "!**/node_modules/**"
+  ],
+  "coverageReporters": ["text-summary", "html"]
+}

@@ -1,0 +1,27 @@
+{
+  "plugins": [
+    "jsx-control-statements",
+    "transform-runtime"
+  ],
+  "presets": [
+    "es2015",
+    "react",
+    "stage-0",
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current",
+          "browsers": [
+            "ie 11",
+            "last 2 versions",
+            "Firefox ESR"
+          ],
+          "useBuiltIns": true,
+          "modules": false,
+          "loose": true
+        }
+      }
+    ]
+  ]
+}
