@@ -1,4 +1,5 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { call, put, all } from 'redux-saga/effects';
+import safeTakeLatest from './errorHandlers';
 import * as act from '../actions';
 import api from '../services';
 
@@ -9,6 +10,6 @@ function* getData() {
 
 export default function () {
   return all([
-    takeLatest(act.GET_DATA, getData),
+    safeTakeLatest(act.GET_DATA, act.DEFAULT_MESSAGE_ERROR, getData),
   ]);
 }
