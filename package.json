@@ -10,7 +10,8 @@
     "jslint": "./node_modules/.bin/eslint src --ext .jsx,.js -f table",
     "csslint": "./node_modules/.bin/stylelint src/\"**/*.scss\"",
     "lint": "yarn run jslint && yarn run csslint",
-    "test": "./node_modules/.bin/jest -c config/test.config.json"
+    "test": "./node_modules/.bin/jest -c config/test.config.json",
+    "clean": "rm -rf build/"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,14 @@
   },
   "author": "alexeyvax",
   "license": "ISC",
+  "keywords": [
+    "react",
+    "redux",
+    "boilerplate",
+    "react-redux-boilerplate",
+    "react-redux-template",
+    "starter"
+  ],
   "bugs": {
     "url": "https://github.com/alexeyvax/react-boilerplate/issues"
   },
