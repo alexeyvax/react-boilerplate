@@ -6,7 +6,7 @@ function safeTakeLatest(actions, errorAction, saga) {
     try {
       yield* saga(...args);
     } catch (error) {
-      console.error(error.toString() || errMsgs[errorAction]);
+      console.error(errMsgs[errorAction] || error.toString());
     }
   });
 }

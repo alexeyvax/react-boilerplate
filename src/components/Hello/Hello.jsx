@@ -22,7 +22,13 @@ const Hello = ({
             <li key={key}>{data[key]}</li>
           ))}
         </ol>
-        <button type="button" onClick={onClearData}>Clear data</button>
+        <button
+          type="button"
+          className="clear"
+          onClick={onClearData}
+        >
+          Clear data
+        </button>
       </If>
     </React.Fragment>
   );
