@@ -3,7 +3,7 @@ import safeTakeLatest from './errorHandlers';
 import * as act from '../actions';
 import api from '../services';
 
-function* getData() {
+export function* getData() {
   const res = yield call(api.getData.getData);
   yield put({ type: act.SET_DATA, payload: res });
 }

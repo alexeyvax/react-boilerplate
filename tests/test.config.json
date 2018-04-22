@@ -1,6 +1,7 @@
 {
   "rootDir": "../",
   "testRegex": "./src/.*.test.js",
+  "setupTestFrameworkScriptFile": "./tests/setupTests.js",
   "transformIgnorePatterns": [
     "node_modules"
   ],
