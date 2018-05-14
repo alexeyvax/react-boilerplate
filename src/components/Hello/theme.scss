@@ -1,3 +1,11 @@
+@import '../../styles/common';
+
+button {
+  @include resetButton();
+
+  background-color: $button-color;
+}
+
 .test {
   display: block;
 }

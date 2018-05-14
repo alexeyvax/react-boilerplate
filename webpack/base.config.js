@@ -37,8 +37,9 @@ const rules = [
     test: /\.(scss)$/,
     use: [
       'style-loader',
-      'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[local]_[hash:base64:5]',
-      'postcss-loader',
+      'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[local]--[hash:base64:5]',
+      'postcss-loader?sourceMap',
+      'sass-loader?sourceMap',
     ],
   },
 ];

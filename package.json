@@ -4,13 +4,14 @@
   "description": "boilerplate for react",
   "scripts": {
     "server": "node server",
-    "start": "yarn run dev",
+    "start": "yarn dev",
     "dev": "./node_modules/.bin/webpack-dev-server --mode development --config webpack/dev.config.js",
-    "prod": "./node_modules/.bin/webpack --mode production --config webpack/prod.config.js",
+    "build": "./node_modules/.bin/webpack --mode production --config webpack/prod.config.js",
     "jslint": "./node_modules/.bin/eslint src --ext .jsx,.js -f table",
     "csslint": "./node_modules/.bin/stylelint src/\"**/*.scss\"",
-    "lint": "yarn run jslint && yarn run csslint",
+    "lint": "yarn jslint && yarn csslint",
     "test": "./node_modules/.bin/jest -c tests/test.config.json",
+    "precommit": "yarn lint && yarn test",
     "clean": "rm -rf build/"
   },
   "repository": {
@@ -72,13 +73,14 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-jsx-control-statements": "^2.2.0",
     "eslint-plugin-react": "^7.7.0",
+    "fs": "^0.0.1-security",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "jsx-control-statements": "^3.2.8",
     "node-sass": "^4.8.3",
     "postcss-loader": "^2.1.3",
-    "pre-commit": "^1.2.2",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.3.0",
     "redux-mock-store": "^1.5.1",
@@ -91,10 +93,11 @@
     "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   },
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
+  "husky": {
+    "hooks": {
+      "precommit": "yarn lint && yarn test"
+    }
+  },
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=3.0.0",

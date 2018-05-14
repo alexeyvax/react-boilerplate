@@ -1,0 +1,14 @@
+/* mixins for styles */
+
+/* list of mixins:
+  - resetButton
+*/
+
+// reset button
+@mixin resetButton() {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
