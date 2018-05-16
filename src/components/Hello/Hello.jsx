@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import theme from './theme.scss';
 
 const Hello = ({
@@ -16,6 +17,8 @@ const Hello = ({
       >
         Get data
       </button>
+      {' '}
+      <Link href to="/second-page">Go to Second Page!</Link>
       <If condition={listOfData.length}>
         <ol>
           {listOfData.map(key => (

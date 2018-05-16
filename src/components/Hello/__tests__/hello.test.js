@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import Hello from '../';
 import { data } from '../../../../mocks';
 
@@ -10,12 +11,14 @@ describe('check name', () => {
 
   describe('check component without data', () => {
     const component = mount((
-      <Hello
-        data={{}}
-        name={name}
-        onGetData={onGetData}
-        onClearData={onClearData}
-      />
+      <MemoryRouter initialEntries={['/second-page']}>
+        <Hello
+          data={{}}
+          name={name}
+          onGetData={onGetData}
+          onClearData={onClearData}
+        />
+      </MemoryRouter>
     ));
 
     it('check mount component Hello', () => {
@@ -38,12 +41,14 @@ describe('check name', () => {
 
   describe('check component with data', () => {
     const component = mount((
-      <Hello
-        data={data}
-        name={name}
-        onGetData={onGetData}
-        onClearData={onClearData}
-      />
+      <MemoryRouter initialEntries={['/second-page']}>
+        <Hello
+          data={data}
+          name={name}
+          onGetData={onGetData}
+          onClearData={onClearData}
+        />
+      </MemoryRouter>
     ));
 
     it('check list', () => {
