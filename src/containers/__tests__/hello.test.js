@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 import * as act from '../../actions';
 import Hello from '../Hello';
@@ -16,7 +17,9 @@ describe('AddTodo', () => {
   beforeEach(() => {
     wrapper = mount((
       <Provider store={store}>
-        <Hello />
+        <MemoryRouter>
+          <Hello />
+        </MemoryRouter>
       </Provider>));
   });
 
