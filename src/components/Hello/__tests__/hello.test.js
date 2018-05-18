@@ -30,8 +30,8 @@ describe('check name', () => {
     });
 
     it('check button in component Hello', () => {
-      expect(component.find('button.testing').length).toEqual(1);
-      expect(component.find('button.testing').text()).toEqual('Get data');
+      expect(component.find('button').length).toEqual(1);
+      expect(component.find('button').text()).toEqual('Get data');
     });
 
     it('check list', () => {
