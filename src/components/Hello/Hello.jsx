@@ -1,10 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import theme from './theme.scss';
 
 const Hello = ({
-  data, name, onGetData, onClearData,
+  data, name, theme, onGetData, onClearData,
 }) => {
   const listOfData = Object.keys(data);
   return (
@@ -40,6 +39,7 @@ const Hello = ({
 Hello.propTypes = {
   data: propTypes.objectOf(propTypes.string).isRequired,
   name: propTypes.string,
+  theme: propTypes.objectOf(propTypes.string).isRequired,
   onGetData: propTypes.func.isRequired,
   onClearData: propTypes.func.isRequired,
 };
