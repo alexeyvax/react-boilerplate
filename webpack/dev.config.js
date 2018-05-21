@@ -11,7 +11,20 @@ const {
 module.exports = {
   entry: ENTRY_PATH,
   output: outputDev,
-  module: { rules },
+  module: {
+    rules: [
+      ...rules,
+      {
+        test: /\.(scss)$/,
+        use: [
+          'style-loader',
+          'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[local]--[hash:base64:5]',
+          'postcss-loader?sourceMap',
+          'sass-loader?sourceMap',
+        ],
+      },
+    ],
+  },
   resolve: { extensions },
   devtool: 'source-map',
   plugins: [
