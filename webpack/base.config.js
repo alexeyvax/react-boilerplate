@@ -14,9 +14,9 @@ const outputDev = {
 };
 
 const outputProd = {
-  filename: 'index.min.js',
-    path: pathName,
-    publicPath: '/',
+  filename: 'scripts/[name].[chunkhash].min.js',
+  path: pathName,
+  publicPath: './',
 };
 
 const rules = [
@@ -31,15 +31,6 @@ const rules = [
     test: /\.(css)$/,
     use: [
       'style-loader', 'css-loader',
-    ],
-  },
-  {
-    test: /\.(scss)$/,
-    use: [
-      'style-loader',
-      'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[local]--[hash:base64:5]',
-      'postcss-loader?sourceMap',
-      'sass-loader?sourceMap',
     ],
   },
 ];
@@ -69,4 +60,5 @@ module.exports = {
   rules,
   extensions,
   devServer,
+  PUBLIC_FOLDER,
 };
