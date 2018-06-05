@@ -44,15 +44,6 @@ module.exports = {
     rules: [
       ...rules,
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true },
-          },
-        ],
-      },
-      {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -90,14 +81,25 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebPackPlugin({
-      template: './config/index.html',
+      template: './public/index.html',
       filename: './index.html',
-      favicon: './config/favicon.ico',
+      favicon: './public/favicon.ico',
+      title: 'React boilerplate',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyURLs: true,
+      },
     }),
     new ExtractTextPlugin({
       filename: 'styles/style.css',
       allChunks: true,
     }),
-    new CleanWebpackPlugin(PUBLIC_FOLDER, { root: path.resolve(__dirname, '..')}),
+    new CleanWebpackPlugin(PUBLIC_FOLDER, { root: path.resolve(__dirname, '..'), beforeEmit: true }),
   ],
 };

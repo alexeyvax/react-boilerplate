@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   ENTRY_PATH,
@@ -28,7 +29,12 @@ module.exports = {
   resolve: { extensions },
   devtool: 'source-map',
   plugins: [
-    new HtmlWebpackPlugin({ template: './config/index.html' }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        WITH_LOG: JSON.stringify(process.env.WITH_LOG),
+      },
+    }),
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
   ],
   devServer,
 };
