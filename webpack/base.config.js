@@ -33,14 +33,6 @@ const rules = [
       'style-loader', 'css-loader',
     ],
   },
-  {
-    test: path.resolve(__dirname, 'public/index.html'),
-    use: [
-      {
-        loader: 'prerender-loader?string',
-      },
-    ],
-  },
 ];
 
 const extensions = ['.js', '.jsx', '.scss', '.json'];
