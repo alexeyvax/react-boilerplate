@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with optional props 1`] = `
+<button
+  className="test"
+  onClick={[MockFunction]}
+  type="button"
+>
+  Button name
+</button>
+`;
+
+exports[`renders correctly without optional props 1`] = `
+<button
+  className="null"
+  onClick={[MockFunction]}
+  type="button"
+>
+  button
+</button>
+`;

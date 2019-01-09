@@ -7,4 +7,5 @@ export const data = {
 
 export const initStateGetData = {
   data: {},
+  name: 'Alexeyvax',
 };

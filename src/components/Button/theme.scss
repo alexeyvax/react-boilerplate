@@ -1,0 +1,16 @@
+@import '~common';
+
+button {
+  @include reset-button();
+
+  padding: 10px 14px;
+  background-color: $button-color;
+}
+
+.testing {
+  display: block;
+}
+
+.clear {
+  display: block;
+}

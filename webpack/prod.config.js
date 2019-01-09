@@ -1,90 +1,86 @@
-const webpack = require('webpack');
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
+const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+
 const {
-  ENTRY_PATH,
-  outputProd,
+  rootDir,
   rules,
   extensions,
-  PUBLIC_FOLDER,
+  alias,
+  plugins,
 } = require(path.resolve(__dirname, './base.config'));
 
 module.exports = {
-  entry: {
-    index: ENTRY_PATH,
-  },
-  output: outputProd,
-  performance: {
-  //   hints: false
-    maxEntrypointSize: 500000,
-  },
-  optimization: {
-    runtimeChunk: false,
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      })
-    ],
+  output: {
+    path: `${rootDir}/build`,
+    filename: '[name].[chunkhash].js',
   },
   module: {
     rules: [
       ...rules,
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader?modules&importLoaders=1&localIdentName=[local]_[hash:base64:5]',
-              options: { minimize: true },
-            },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'sass-loader',
-            },
-          ],
-        }),
-      },
-      {
-        test: /\.(jpe?g|png|svg|gif|ico)$/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: 'file-loader',
+            loader: 'css-loader',
             options: {
-              name: 'images/[name].[hash].[ext]',
-              outputPath: 'assets/',
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              camelCase: true,
+              importLoaders: 2,
+              minimize: true,
             },
           },
+          'postcss-loader',
+          'sass-loader',
         ],
       },
     ],
   },
-  resolve: { extensions },
+  mode: 'production',
+  resolve: {
+    extensions,
+    alias,
+  },
+  performance: {
+    maxEntrypointSize: 500000,
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsWebpackPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+    ],
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   plugins: [
+    ...plugins,
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
-      favicon: './public/favicon.ico',
-      title: 'React boilerplate',
+    new WebpackMd5Hash(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      hash: true,
+      template: `${rootDir}/public/index.html`,
+      filename: 'index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -96,10 +92,5 @@ module.exports = {
         minifyURLs: true,
       },
     }),
-    new ExtractTextPlugin({
-      filename: 'styles/style.css',
-      allChunks: true,
-    }),
-    new CleanWebpackPlugin(PUBLIC_FOLDER, { root: path.resolve(__dirname, '..'), beforeEmit: true }),
   ],
 };

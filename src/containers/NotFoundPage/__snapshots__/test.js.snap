@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <h2>
+    This is a Not Found Page 404!
+  </h2>,
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    Go to main page
+  </a>,
+  " ",
+]
+`;

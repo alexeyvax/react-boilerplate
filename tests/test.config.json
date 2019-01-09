@@ -1,6 +1,6 @@
 {
   "rootDir": "../",
-  "testRegex": "./src/.*.test.js",
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$",
   "setupTestFrameworkScriptFile": "./tests/setupTests.js",
   "transformIgnorePatterns": [
     "node_modules"
@@ -21,5 +21,6 @@
     "src/**/*.{js,jsx}",
     "!**/node_modules/**"
   ],
-  "coverageReporters": ["text-summary", "html"]
+  "coverageReporters": ["text-summary", "html"],
+  "testURL": "http://localhost"
 }

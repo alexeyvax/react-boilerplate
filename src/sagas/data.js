@@ -1,11 +1,14 @@
 import { call, put, all } from 'redux-saga/effects';
+
+import * as act from '../actions/types';
+import { setData } from '../actions/creators';
 import safeTakeLatest from './errorHandlers';
-import * as act from '../actions';
 import api from '../services';
 
 export function* getData() {
-  const res = yield call(api.getData.getData);
-  yield put({ type: act.SET_DATA, payload: res });
+  const res = yield call(api.data.getData);
+
+  yield put(setData(res));
 }
 
 export default function () {

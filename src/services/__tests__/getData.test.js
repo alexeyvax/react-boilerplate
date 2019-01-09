@@ -1,6 +1,7 @@
 import sinon from 'sinon';
-import Axios from '../axiosConfig';
-import api from '../getData';
+import Axios from 'axios';
+
+import api from '../data';
 import { data } from '../../../mocks';
 
 describe('Services/API/getData', () => {
@@ -11,7 +12,7 @@ describe('Services/API/getData', () => {
       .then((res) => {
         expect(res).toEqual(data);
         expect(Axios.get.calledOnce).toBeTruthy();
-        expect(Axios.get.calledWith('/get-test-data')).toBeTruthy();
+        expect(Axios.get.calledWith('/api/get-test-data')).toBeTruthy();
         AxiosGet.restore();
         done();
       })
