@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with empty data prop 1`] = `
+<button
+  className="testing"
+  onClick={[MockFunction]}
+  type="button"
+>
+  Get data
+</button>
+`;
+
+exports[`renders correctly with optional props 1`] = `
+Array [
+  <h1
+    className="test"
+  >
+    Hello test-name
+  </h1>,
+  <button
+    className="testing"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    Get data
+  </button>,
+  <ol>
+    <li>
+      one
+    </li>
+    <li>
+      two
+    </li>
+    <li>
+      three
+    </li>
+  </ol>,
+  <button
+    className="null"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    Clear data
+  </button>,
+]
+`;
+
+exports[`renders correctly without optional props 1`] = `
+Array [
+  <button
+    className="testing"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    Get data
+  </button>,
+  <ol>
+    <li>
+      one
+    </li>
+    <li>
+      two
+    </li>
+    <li>
+      three
+    </li>
+  </ol>,
+  <button
+    className="null"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    Clear data
+  </button>,
+]
+`;

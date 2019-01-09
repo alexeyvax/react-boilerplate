@@ -1,14 +1,7 @@
 {
-  "plugins": [
-    "jsx-control-statements",
-    "transform-runtime"
-  ],
   "presets": [
-    "es2015",
-    "react",
-    "stage-0",
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets": {
           "node": "current",
@@ -16,12 +9,17 @@
             "ie 11",
             "last 2 versions",
             "Firefox ESR"
-          ],
-          "useBuiltIns": true,
-          "modules": false,
-          "loose": true
-        }
+          ]
+        },
+        "useBuiltIns": "entry",
+        "loose": true
       }
-    ]
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "lodash",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }

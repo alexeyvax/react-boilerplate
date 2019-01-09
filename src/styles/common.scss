@@ -1,8 +1,11 @@
 /* External */
-@import url("~normalize.css");
+@import url('~normalize.css');
 
 /* Inner */
-@import "./_colors";
-@import "./_levels";
-@import "./_mixins";
-@import "./_variables";
+@import './_colors';
+@import './_fonts';
+@import './_levels';
+@import './_mixins';
+@import './_variables';
+
+/* also styles for html and body here */

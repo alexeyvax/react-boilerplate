@@ -1,7 +1,7 @@
-import getData from './getData';
+import data from './data';
 
 const api = {
-  getData,
+  data,
 };
 
 export default api;

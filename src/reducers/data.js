@@ -1,7 +1,8 @@
-import * as act from '../actions';
+import * as act from '../actions/types';
 
 const initialState = {
   data: {},
+  name: 'Alexeyvax',
 };
 
 export default function data(state = initialState, action) {

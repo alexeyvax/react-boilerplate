@@ -1,10 +1,8 @@
 {
   "extends": [
-    "airbnb",
-    "plugin:jsx-control-statements/recommended"
+    "airbnb"
   ],
   "parser": "babel-eslint",
-  "globals": {},
   "env": {
     "browser": true,
     "jest": true
@@ -17,9 +15,7 @@
       "error",
       { "allow": ["_id", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }
     ],
-    "no-console": ["error", { "allow": ["warn", "info", "error"] }]
-  },
-  "plugins": [
-    "jsx-control-statements"
-  ]
+    "no-console": ["error", { "allow": ["warn", "info", "error"] }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true } ]
+  }
 }

@@ -1,7 +1,0 @@
-const HELLO = 'HELLO';
-const HELLO_COMPONENT = 'HELLO_COMPONENT';
-
-export {
-  HELLO,
-  HELLO_COMPONENT,
-};

@@ -1,2 +1,5 @@
+import { createSelector } from 'reselect';
 
-export const getData = state => state.data.data; // eslint-disable-line
+export const getDataSelector = state => state.data.data;
+
+export default createSelector([getDataSelector]);

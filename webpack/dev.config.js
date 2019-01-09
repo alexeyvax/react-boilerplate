@@ -1,40 +1,84 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const {
-  ENTRY_PATH,
-  outputDev,
+  rootDir,
+  HOST_NAME,
+  PORT,
+  PUBLIC_FOLDER,
+  PROXY_TARGET,
   rules,
   extensions,
-  devServer,
+  alias,
+  plugins,
 } = require(path.resolve(__dirname, './base.config'));
 
 module.exports = {
-  entry: ENTRY_PATH,
-  output: outputDev,
+  output: {
+    filename: 'index.js',
+    path: `${rootDir}/${PUBLIC_FOLDER}`,
+    publicPath: `http://${HOST_NAME}:${PORT}`,
+  },
   module: {
     rules: [
       ...rules,
       {
-        test: /\.(scss)$/,
+        test: /\.scss$/,
         use: [
           'style-loader',
-          'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[local]--[hash:base64:5]',
-          'postcss-loader?sourceMap',
-          'sass-loader?sourceMap',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              sourceMap: true,
+              camelCase: true,
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
       },
     ],
   },
-  resolve: { extensions },
+  resolve: {
+    extensions,
+    alias,
+  },
   devtool: 'source-map',
+  mode: 'development',
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        WITH_LOG: JSON.stringify(process.env.WITH_LOG),
-      },
+    ...plugins,
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: `${rootDir}/public/index.html`,
+      filename: 'index.html',
     }),
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
   ],
-  devServer,
+  devServer: {
+    host: HOST_NAME,
+    contentBase: `${rootDir}/${PUBLIC_FOLDER}`,
+    historyApiFallback: true,
+    port: PORT,
+    open: true,
+    proxy: {
+      '/api': {
+        target: PROXY_TARGET,
+        cookieDomainRewrite: HOST_NAME,
+        autoRewrite: true,
+        secure: false,
+      },
+    },
+  },
 };

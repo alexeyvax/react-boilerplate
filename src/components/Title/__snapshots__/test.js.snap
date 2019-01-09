@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly Title component 1`] = `
+<h1
+  className="test"
+>
+  Hello Test-name
+</h1>
+`;
